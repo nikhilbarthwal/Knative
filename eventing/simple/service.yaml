@@ -1,0 +1,9 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: service
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/nbarthwal-public/event-display:v1
