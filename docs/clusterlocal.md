@@ -6,26 +6,7 @@ So far, we've been deploying publicly accessible services. In this lab, we'll cr
 
 Create a [service-local.yaml](../serving/helloworld/service-local.yaml) file.
 
-```yaml
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
-metadata:
-  name: helloworld-local
-  namespace: default
-  labels:
-   serving.knative.dev/visibility: cluster-local
-spec:
-  template:
-    spec:
-      containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v1
-          env:
-            - name: TARGET
-              value: "v1"
-```
-
-Notice how we labeled our service with `cluster-local`. This makes the service private. 
+Notice how we labeled our service with `cluster-local`. This makes the service private.
 
 Deploy the service:
 
@@ -43,11 +24,11 @@ kubectl get ksvc helloworld-local
 NAME               URL
 helloworld-local   http://helloworld-local.default.svc.cluster.local
 ```
-Notice that the URL has `svc.cluster.local` (and not our dummy nip.io domain) in it which makes it not publicly accessible. 
+Notice that the URL has `svc.cluster.local` (and not the xip.io domain) in it which makes it not publicly accessible.
 
 ## Turn a public service into local
 
-You can also take an existing public service and turn into a local service by simply adding the label. 
+You can also take an existing public service and turn into a local service by simply adding the label.
 
 For example, deploy the first version of helloworld service:
 
@@ -57,7 +38,7 @@ kubectl apply -f service-v1.yaml
 You should be able to access it via curl because it's public:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.nip.io
+curl http://helloworld.default.$ISTIO_INGRESS.xip.io
 
 Hello v1
 ```

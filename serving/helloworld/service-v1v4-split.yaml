@@ -1,4 +1,4 @@
-# Copyright 2019 Google LLC
+# Copyright 2020 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-apiVersion: serving.knative.dev/v1alpha1
+apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: helloworld
@@ -22,8 +22,7 @@ spec:
       name: helloworld-v4
     spec:
       containers:
-        # Replace {project_id} with your actual project id
-        - image: gcr.io/{project_id}/helloworld:v1
+        - image: gcr.io/nikhilbarthwal-knative/helloworld:v1
           env:
             - name: TARGET
               value: "v4"

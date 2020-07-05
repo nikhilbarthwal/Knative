@@ -12,38 +12,17 @@ You can either create your 'Hello World' service as described in Knative Serving
 
 ## Build and push Docker image
 
-In folder of your language of choice, build and push the container image defined by `Dockerfile`:
+In folder of your language of choice, build and push the container image defined by `Dockerfile`. Replace `{username}` with your DockerHub username:
 
 ```bash
+docker build -t {username}/helloworld:v1 .
 
-gcloud auth configure-docker
-
-docker build -t gcr.io/$PROJECT_ID/helloworld:v1 .
-
-docker push gcr.io/$PROJECT_ID/helloworld:v1
-
+docker push {username}/helloworld:v1
 ```
 
 ## Deploy the Knative service
 
-Take a look at [service-v1.yaml](../serving/helloworld/service-v1.yaml) file where we define a Knative service:
-
-```yaml
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
-metadata:
-  name: helloworld
-  namespace: default
-spec:
-  template:
-    spec:
-      containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v1
-          env:
-            - name: TARGET
-              value: "v1"
-```
+Take a look at [service-v1.yaml](../serving/helloworld/service-v1.yaml) file where we define a Knative service.
 
 After the container is pushed, deploy the Knative service:
 
@@ -74,7 +53,7 @@ route.serving.knative.dev/helloworld
 
 ## (Optional) Install watch
 
-[Watch](https://en.wikipedia.org/wiki/Watch_(Unix) is a command-line tool that runs the specified command repeatedly and displays the results on standard output so you can watch it change over time. It can be useful to watch Knative pods, services, etc. If you're using Mac, you can install watch using `homebrew` or a similar tool.
+[Watch](https://en.wikipedia.org/wiki/Watch_(Unix)) is a command-line tool that runs the specified command repeatedly and displays the results on standard output so you can watch it change over time. It can be useful to watch Knative pods, services, etc. If you're using Mac, you can install watch using `homebrew` or a similar tool.
 
 To watch pods, Knative service, configuration, revision and route using watch, you can do this:
 
@@ -101,6 +80,13 @@ route.serving.knative.dev/helloworld   1m
 
 ## Test the service
 
+Starting with v0.13.0, Knative Serving comes up with an optional Kubernetes job
+that setups up xip.io as the default domain. This is useful for demo purposes
+and we're assuming that you have it setup. You can check the installation
+instructions on [Knative
+Installation](https://knative.dev/docs/install/any-kubernetes-cluster/) page or
+use the [install-serving](../setup/install-serving) script we provided.
+
 To test the service, we need to find the IP address of the Istio ingress gateway and the URL of the service.
 
 The IP address of Istio ingress is listed under `EXTERNAL_IP`:
@@ -120,6 +106,7 @@ The URL of the service follows this format: `{service}.{namespace}.example.com`.
 Make a request to your service:
 
 ```bash
-curl -H "Host: helloworld.default.example.com" http://$ISTIO_INGRESS
+curl http://helloworld.default.$ISTIO_INGRESS.xip.io
+
 Hello v1
 ```

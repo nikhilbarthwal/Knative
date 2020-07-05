@@ -1,37 +1,33 @@
-# Pub/Sub triggered service
+# Cloud Pub/Sub triggered service
 
-In this sample, we'll take a look at how to connect GCP Pub/Sub messages to a service with Knative Eventing. We'll roughly be following [CloudPubSubSource Example](https://github.com/google/knative-gcp/blob/master/docs/examples/cloudpubsubsource/README.md) docs page with slight modifications to make it easier to understand.
+In this sample, we'll take a look at how to connect GCP Pub/Sub messages to a service with Knative Eventing. We'll roughly be following [CloudPubSubSource Example](https://github.com/google/knative-gcp/blob/master/docs/examples/cloudpubsubsource/README.md) docs page.
 
 ## Knative with GCP & PubSub Topic
 
 We're assuming that you already went through [Install Knative with GCP](../setup/README.md) section of the setup.
 
+## Create a Pub/Sub topic
+
+Create a Pub/Sub topic where messages will be sent:
+
+```bash
+gcloud pubsub topics create testing
+```
+
 ## CloudPubSubSource
 
 Create a CloudPubSubSource to connect PubSub messages to Knative Eventing. The default [cloudpubsubsource.yaml](https://github.com/google/knative-gcp/blob/master/docs/examples/cloudpubsubsource/cloudpubsubsource.yaml) connects Pub/Sub messages to a service directly.
 
-Instead, create the following [cloudpubsubsource.yaml](../eventing/pubsub/cloudpubsubsource.yaml) to connect Pub/Sub messages to a Broker, so, we can have multiple triggers to invoke multiple services on the same message:
+Instead, use the following [cloudpubsubsource.yaml](../eventing/pubsub/cloudpubsubsource.yaml) to connect Pub/Sub messages to a Broker, so, we can have multiple triggers to invoke multiple services on the same message.
 
-```yaml
-apiVersion: events.cloud.google.com/v1alpha1
-kind: CloudPubSubSource
-metadata:
-  name: cloudpubsubsource-test
-spec:
-  topic: testing
-  sink:
-    ref:
-      apiVersion: eventing.knative.dev/v1alpha1
-      kind: Broker
-      name: default
-```
+Note that there's an alternative
+[cloudpubsubsource-workload.yaml](../eventing/pubsub/cloudpubsubsource-workload.yaml).
+Use this version instead if you setup workload identity on GKE.
 
 Create the CloudPubSubSource:
 
 ```bash
 kubectl apply -f cloudpubsubsource.yaml
-
-cloudpubsubsource.events.cloud.google.com/cloudpubsubsource-test created
 ```
 
 ## Broker
@@ -53,34 +49,21 @@ default   True             http://default-broker.default.svc.cluster.local   52m
 
 ## Consumer
 
-For the event consumer, we can use the Event Display service in [Hello World Eventing](helloworldeventing.md) sample. Go through the steps mentioned there to create and deploy the Event Display service.
+For the event consumer, we can use the Event Display service defined in
+[kservice.yaml](../eventing/pubsub/kservice.yaml).
+
+Create the service:
+
+```bash
+kubectl apply -f kservice.yaml
+```
 
 ## Trigger
 
-Connect the Event Display service to the Broker with a Trigger. 
-
-Create a [trigger-event-display-pubsub.yaml](../eventing/pubsub/trigger-event-display-pubsub.yaml):
-
-```yaml
-apiVersion: eventing.knative.dev/v1alpha1
-kind: Trigger
-metadata:
-  name: trigger-event-display-pubsub
-spec:
-  subscriber:
-    ref:
-      #apiVersion: serving.knative.dev/v1
-      apiVersion: v1
-      kind: Service
-      name: event-display
-```
-
-Create the trigger:
+Connect the Event Display service to the Broker with a Trigger defined in [trigger.yaml](../eventing/pubsub/trigger.yaml):
 
 ```bash
-kubectl apply -f trigger-event-display-pubsub.yaml
-
-trigger.eventing.knative.dev/trigger-event-display-pubsub created
+kubectl apply -f trigger.yaml
 ```
 
 Check that the trigger is ready:
@@ -109,14 +92,24 @@ Wait a little and check that a pod is created:
 kubectl get pods
 ```
 
-You can inspect the logs of the pod (replace `<podid>` with actual pod id):
+Inspect the logs of the pod (replace `<podid>` with actual pod id):
 
 ```bash
-kubectl logs --follow <podid>
+kubectl logs <podid> -c user-container --follow
 ```
 
 You should see something similar to this:
 
 ```text
-Event Display received message: Hello World
+info: event_display.Startup[0]
+      Received CloudEvent
+      ID: 1203138894276445
+      Source: //pubsub.googleapis.com/projects/nikhilbarthwal-knative/topics/testing
+      Type: com.google.cloud.pubsub.topic.publish
+      Subject:
+      DataSchema:
+      DataContentType: application/json
+      Time: 2020-05-13T14:57:20.106Z
+      SpecVersion: V1_0
+      Data: {"subscription":"cre-pull-b1d2ed86-d4ed-4cea-919e-39895b1f818d","message":{"messageId":"1203138894276445","data":"SGVsbG8gV29ybGQ=","publishTime":"2020-05-13T14:57:20.106Z"}}
 ```

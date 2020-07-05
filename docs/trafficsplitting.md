@@ -33,8 +33,8 @@ spec:
       name: helloworld-v1
     spec:
       containers:
-        # Replace {project_id} with your actual project id
-        - image: gcr.io/{project_id}/helloworld:v1
+        # Replace {username} with your actual DockerHub
+        - image: docker.io/{username}/helloworld:v1
           env:
             - name: TARGET
               value: "v1"
@@ -75,7 +75,7 @@ helloworld-v1      helloworld-v1      4
 And `helloworld-v1` is the one getting the traffic:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.nip.io
+curl http://helloworld.default.$ISTIO_INGRESS.xip.io
 
 Hello v1
 ```
@@ -134,7 +134,7 @@ helloworld-v4      helloworld-v4      5
 But `helloworld-v1` is still one getting the traffic:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.nip.io
+curl http://helloworld.default.$ISTIO_INGRESS.xip.io
 
 Hello v1
 ```
@@ -142,7 +142,7 @@ Hello v1
 You can verify that the new version is deployed by accessing the `latest` endpoint:
 
 ```bash
-curl http://latest-helloworld.default.$ISTIO_INGRESS.nip.io
+curl http://latest-helloworld.default.$ISTIO_INGRESS.xip.io
 
 Hello v4
 ```
@@ -150,7 +150,7 @@ Hello v4
 But the `current` one is `helloworld-v1`:
 
 ```bash
-curl http://current-helloworld.default.$ISTIO_INGRESS.nip.io
+curl http://current-helloworld.default.$ISTIO_INGRESS.xip.io
 
 Hello v1
 ```
@@ -172,7 +172,7 @@ spec:
     spec:
       containers:
         # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v1
+        - image: docker.io/{username}/helloworld:v4
           env:
             - name: TARGET
               value: "v4"
@@ -197,7 +197,7 @@ kubectl apply -f service-v1v4-split.yaml
 You should see roughly 50% of the requests split between revisions:
 
 ```bash
-for i in {1..10}; do curl http://helloworld.default.$ISTIO_INGRESS.nip.io; sleep 1; done
+for i in {1..10}; do curl http://helloworld.default.$ISTIO_INGRESS.xip.io; sleep 1; done
 Hello v1
 Hello v4
 Hello v1

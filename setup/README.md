@@ -14,9 +14,9 @@ Create a GKE cluster *without* Istio add-on. We do this because the Istio versio
 ./create-gke-cluster
 ```
 
-## Install Istio with Cluster Local Gateway
+## Install Istio
 
-Install Istio and also the cluster local gateway that's needed to have Knative Services as event sinks:
+Install Istio:
 
 ```shell
 ./install-istio
@@ -34,28 +34,51 @@ Install Istio and also the cluster local gateway that's needed to have Knative S
 ./install-eventing
 ```
 
+## (Optional) Install observability features
+
+Install observability features to enable logging, metrics, and request tracing in Serving and Eventing components:
+
+```shell
+./install-monitoring
+```
+
 ## Install Knative with GCP
 
-If you intend to read GCP Pub/Sub messages, go through these steps.
+If you intend to read GCP Pub/Sub messages, go through these steps. 
 
-Install Knative with GCP:
+There are 2 ways of setting up authentication:
+
+1. Workload identity
+2. Kubernetes secrets
+
+To use #1, add 'workload' to the scripts.
+
+Install Knative with GCP with Kubernetes secrets:
 
 ```bash
 ./install-knative-gcp
 ```
 
-Configure a Pub/Sub enabled Service Account:
+OR
+
+Install Knative with GCP with Workload identity:
+
+```bash
+./install-knative-gcp workload
+```
+
+Configure a Pub/Sub enabled Service Account with Kubernetes secrets:
 
 ```bash
 ./install-pubsub-serviceaccount
 ```
 
-Create a Pub/Sub topic where messages will be sent:
+OR
+
+Configure a Pub/Sub enabled Service Account with Workload identity:
 
 ```bash
-gcloud pubsub topics create testing
+./install-pubsub-serviceaccount workload
 ```
 
 -------
-
-Thanks to [Mark Chmarny](https://github.com/mchmarny) for the idea and initial scripts.

@@ -32,20 +32,6 @@ docker push {username}/twilio:v1
 
 Take a look at the [service.yaml](../serving/twilio/service.yaml) file.
 
-```yaml
-apiVersion: serving.knative.dev/v1alpha1
-kind: Service
-metadata:
-  name: twilio
-  namespace: default
-spec:
-  template:
-    spec:
-      containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/twilio:v1
-```
-
 After the container is pushed, deploy the app.
 
 ```bash
@@ -58,7 +44,7 @@ Check that the service is created:
 kubectl get ksvc twilio
 
 NAME     URL                                    LATESTCREATED   LATESTREADY    READY   REASON
-twilio   http://twilio.default.1.2.3.4.nip.io   twilio-v96ms    twilio-v96ms   True
+twilio   http://twilio.default.1.2.3.4.xip.io   twilio-v96ms    twilio-v96ms   True
 ```
 
 ## Test the service
@@ -68,7 +54,7 @@ Let's first check that our service works as expected:
 ```bash
 export TWILIO_URL=$(kubectl get route twilio -o jsonpath="{.status.url}")
 echo $TWILIO_URL
-http://twilio.default.1.2.3.4.nip.io
+http://twilio.default.1.2.3.4.xip.io
 
 curl $TWILIO_URL/sms?Body=Hello+World!
 <?xml version="1.0" encoding="UTF-8"?><Response><Message>The Knative copy cat says: Hello World!</Message></Response>
@@ -76,7 +62,7 @@ curl $TWILIO_URL/sms?Body=Hello+World!
 
 We can finally test our service by sending an SMS to our Twilio number. We need to setup Twilio Webhook first.
 
-In Twilio [console](https://www.twilio.com/console), click on the phone number and go to `Messaging` section. For Webhook defined for when a message comes in, change it to your Knative service name and NIP.IO domain:
+In Twilio [console](https://www.twilio.com/console), click on the phone number and go to `Messaging` section. For Webhook defined for when a message comes in, change it to your Knative service name and XIP.IO domain:
 
 ![Twilio Webhook](./images/twilio-webhook-custom.png)
 
