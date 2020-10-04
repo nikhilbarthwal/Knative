@@ -10,27 +10,33 @@ Edit [config](config) file for your setup.
 
 Create a GKE cluster *without* Istio add-on. We do this because the Istio version of the add-on usually lags behind what Knative expects:
 
-```shell
+```sh
 ./create-gke-cluster
 ```
 
 ## Install Istio
 
-Install Istio:
-
-```shell
+```sh
 ./install-istio
 ```
 
 ## Install Knative Serving
 
-```shell
+```sh
 ./install-serving
+```
+
+## (Optional) Configure HTTPS
+
+If you intend to use HTTPS, configure it:
+
+```sh
+./configure-https
 ```
 
 ## Install Knative Eventing
 
-```shell
+```sh
 ./install-eventing
 ```
 
@@ -38,47 +44,40 @@ Install Istio:
 
 Install observability features to enable logging, metrics, and request tracing in Serving and Eventing components:
 
-```shell
+```sh
 ./install-monitoring
 ```
 
-## Install Knative with GCP
+## (Optional) Install Knative with GCP
 
-If you intend to read GCP Pub/Sub messages, go through these steps. 
+If you intend to read Google Cloud events, install [Knative GCP](https://github.com/google/knative-gcp) components.
 
-There are 2 ways of setting up authentication:
+There are 2 ways of setting up authentication in Knative GCP:
 
-1. Workload identity
+1. Workload identity (Recommended)
 2. Kubernetes secrets
 
-To use #1, add 'workload' to the scripts.
+Workload identity is the recommended mechanism but we have scripts for both.
+Pick one of the mechanisms and use appropriate scripts.
 
-Install Knative with GCP with Kubernetes secrets:
+Install Knative with GCP:
 
-```bash
+```sh
+# Kubernetes secrets
 ./install-knative-gcp
-```
 
-OR
-
-Install Knative with GCP with Workload identity:
-
-```bash
+# Workload identity
 ./install-knative-gcp workload
 ```
 
-Configure a Pub/Sub enabled Service Account with Kubernetes secrets:
+Configure a Pub/Sub enabled Service Account for Data Plane:
 
-```bash
-./install-pubsub-serviceaccount
-```
+```sh
+# Kubernetes secrets
+./install-dataplane-serviceaccount
 
-OR
-
-Configure a Pub/Sub enabled Service Account with Workload identity:
-
-```bash
-./install-pubsub-serviceaccount workload
+# Workload identity
+./install-dataplane-serviceaccount workload
 ```
 
 -------

@@ -12,36 +12,42 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 using System;
-using System.Text;
 using System.Threading.Tasks;
-using CloudNative.CloudEvents;
 using Google.Cloud.PubSub.V1;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
 
 namespace Common
 {
     public class PubSubEventWriter : IEventWriter
     {
         private readonly string _projectId;
-        private readonly string _topicId;
+        private readonly string[] _topicIds;
         private readonly ILogger _logger;
 
         public PubSubEventWriter(string projectId, string topicId, ILogger logger)
         {
             _projectId = projectId;
-            _topicId = topicId;
+            _topicIds = topicId.Split(':');
             _logger = logger;
         }
 
         public async Task Write(string eventData, HttpContext context)
         {
-            var topicName = new TopicName(_projectId, _topicId);
-            _logger.LogInformation($"Publishing to topic '{_topicId}' with data '{eventData}");
-            var publisher = await PublisherClient.CreateAsync(topicName);
-            await publisher.PublishAsync(eventData);
-            await publisher.ShutdownAsync(TimeSpan.FromSeconds(10));
+            PublisherClient publisher = null;
+
+            foreach (var topicId in _topicIds)
+            {
+                var topicName = new TopicName(_projectId, topicId);
+                _logger.LogInformation($"Publishing to topic '{topicId}' with data '{eventData}");
+                publisher = await PublisherClient.CreateAsync(topicName);
+                await publisher.PublishAsync(eventData);
+            }
+
+            if (publisher != null)
+            {
+                await publisher.ShutdownAsync(TimeSpan.FromSeconds(10));
+            }
         }
     }
 }

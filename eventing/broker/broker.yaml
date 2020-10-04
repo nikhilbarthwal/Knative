@@ -11,17 +11,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-apiVersion: eventing.knative.dev/v1beta1
-kind: Trigger
+apiVersion: eventing.knative.dev/v1
+kind: Broker
 metadata:
-  name: trigger-query-runner
-spec:
-  filter:
-    attributes:
-      type: google.cloud.scheduler.job.v1.executed
-  subscriber:
-    ref:
-      apiVersion: serving.knative.dev/v1
-      kind: Service
-      name: query-runner
-
+  name: default
+  namespace: default

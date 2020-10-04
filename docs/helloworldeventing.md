@@ -31,7 +31,7 @@ We need to inject a Broker in the namespace where we want to receive messages.
 Let's use the default namespace.
 
 ```bash
-kubectl label namespace default knative-eventing-injection=enabled
+kubectl label ns default eventing.knative.dev/injection=enabled
 ```
 
 You should see a Broker in the namespace:
@@ -39,8 +39,8 @@ You should see a Broker in the namespace:
 ```bash
 kubectl get broker
 
-NAME      READY   REASON   URL                                                     AGE
-default   True             http://default-broker.default.svc.cluster.local   55s
+NAME      READY   REASON   URL
+default   True             http://broker-ingress.knative-eventing.svc.cluster.local/default/default
 ```
 
 ## Consumer
@@ -65,23 +65,13 @@ docker push {username}/event-display:v1
 
 ### Knative Service
 
-You can have any kind of addressable as event sinks (Kubernetes Service, Knative Service etc.). For this part, let's use a Kubernetes Service.
+You can have any kind of addressable as event sinks (Kubernetes Service, Knative
+Service etc.).
 
 Create a [kservice.yaml](../eventing/helloworld/kservice.yaml).
 
 ```bash
 kubectl apply -f kservice.yaml
-```
-
-This defines a Kubernetes Deployment and Service to receive messages.
-
-Create the Event Display service:
-
-```bash
-kubectl apply -f service.yaml
-
-deployment.apps/event-display created
-service/event-display created
 ```
 
 ## Trigger
@@ -141,7 +131,7 @@ If you don't see a command prompt, try pressing enter.
 Send the event. Notice that we're sending with event type `event-display`:
 
 ```bash
-curl -v "http://default-broker.default.svc.cluster.local" \
+curl -v "http://broker-ingress.knative-eventing.svc.cluster.local/default/default" \
   -X POST \
   -H "Ce-Id: say-hello" \
   -H "Ce-Specversion: 1.0" \

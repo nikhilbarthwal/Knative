@@ -20,6 +20,3 @@ spec:
     spec:
       containers:
         - image: gcr.io/nikhilbarthwal-knative/filter:v1
-          env:
-            - name: BUCKET
-              value: "nikhilbarthwal-knative-images-input"

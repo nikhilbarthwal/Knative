@@ -20,54 +20,39 @@ namespace Common
     {
         private ILogger _logger;
 
-        public ConfigReader(ILogger logger)
+        private string _cloudEventSource;
+
+        private string _cloudEventType;
+
+        public ConfigReader(ILogger logger, string cloudEventSource = null, string cloudEventType = null)
         {
+            _cloudEventSource = cloudEventSource;
+            _cloudEventType = cloudEventType;
             _logger = logger;
         }
 
-        public string Read(string var)
+        public string Read(string var, bool required = true)
         {
             var value = Environment.GetEnvironmentVariable(var);
-            CheckArgExists(value, var);
+            if (required)
+            {
+                CheckArgExists(value, var);
+            }
             return value;
         }
 
-        public IEventWriter ReadEventWriter(string CloudEventSource, string CloudEventType)
+        public IEventWriter ReadEventWriter()
         {
-            var eventWriterConfig = Environment.GetEnvironmentVariable("EVENT_WRITER");
-            EventWriterType eventWriterType;
-            if (Enum.TryParse(eventWriterConfig, out eventWriterType))
+            // Use TOPIC_ID as an indicator for Pub/Sub event writer
+            // Can be a single topic or a list of topics seperated by colon.
+            var topicId = Read("TOPIC_ID", false);
+            if (topicId != null)
             {
-                switch (eventWriterType)
-                {
-                    case EventWriterType.PubSub:
-                        var projectId = Environment.GetEnvironmentVariable("PROJECT_ID");
-                        CheckArgExists(projectId, "PROJECT_ID");
-
-                        var topicId = Environment.GetEnvironmentVariable("TOPIC_ID");
-                        CheckArgExists(topicId, "TOPIC_ID");
-
-                        return new PubSubEventWriter(projectId, topicId, _logger);
-                }
+                var projectId = Read("PROJECT_ID");
+                return new PubSubEventWriter(projectId, topicId, _logger);
             }
-            return new CloudEventWriter(CloudEventSource, CloudEventType, _logger);
-        }
 
-        public IBucketEventDataReader ReadEventDataReader()
-        {
-            var eventDataReaderConfig = Environment.GetEnvironmentVariable("EVENT_DATA_READER");
-            BucketDataReaderType bucketDataReaderType;
-            if (Enum.TryParse(eventDataReaderConfig, out bucketDataReaderType))
-            {
-                switch (bucketDataReaderType)
-                {
-                    case BucketDataReaderType.AuditLog:
-                        return new AuditLogBucketEventDataReader();
-                    case BucketDataReaderType.PubSub:
-                        return new PubSubBucketEventDataReader();
-                }
-            }
-            return new CloudEventBucketEventDataReader();
+            return new CloudEventWriter(_cloudEventSource, _cloudEventType, _logger);
         }
 
         private void CheckArgExists(string arg, string name)

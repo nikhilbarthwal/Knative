@@ -12,21 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 using System;
-using System.IO;
-using System.Net.Mime;
-using System.Text;
 using System.Threading.Tasks;
-using CloudNative.CloudEvents;
 using Common;
 using Google.Cloud.BigQuery.V2;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace QueryRunner
 {
@@ -55,9 +49,9 @@ namespace QueryRunner
 
             var eventReader = new CloudEventReader(logger);
 
-            var configReader = new ConfigReader(logger);
+            var configReader = new ConfigReader(logger, CloudEventSource, CloudEventType);
             var projectId = configReader.Read("PROJECT_ID");
-            IEventWriter eventWriter = configReader.ReadEventWriter(CloudEventSource, CloudEventType);
+            var eventWriter = configReader.ReadEventWriter();
 
             app.UseEndpoints(endpoints =>
             {
@@ -66,7 +60,7 @@ namespace QueryRunner
                     var client = await BigQueryClient.CreateAsync(projectId);
 
                     var cloudEvent = await eventReader.Read(context);
-                    var country = ReadCountry(cloudEvent);
+                    var country = eventReader.ReadCloudSchedulerData(cloudEvent);
 
                     _tableId = country.Replace(" ", "").ToLowerInvariant();
 
@@ -79,32 +73,11 @@ namespace QueryRunner
             });
         }
 
-        // TODO - Need to use the common library
-        private string ReadCountry(CloudEvent cloudEvent)
-        {
-            var eventDataReaderConfig = Environment.GetEnvironmentVariable("EVENT_DATA_READER");
-            BucketDataReaderType bucketDataReaderType;
-            if (Enum.TryParse(eventDataReaderConfig, out bucketDataReaderType))
-            {
-                switch (bucketDataReaderType)
-                {
-                    case BucketDataReaderType.PubSub:
-                        var cloudEventData = JValue.Parse((string)cloudEvent.Data);
-                        var data = (string)cloudEventData["message"]["data"];
-                        var decoded = Encoding.UTF8.GetString(Convert.FromBase64String(data));
-                        return decoded;
-                }
-            }
-            return (string)cloudEvent.Data;
-        }
-
         private async Task<BigQueryResults> RunQuery(BigQueryClient client, string country, ILogger<Startup> logger)
         {
-            var sql = $@"SELECT date, SUM(confirmed) num_reports
-                FROM `bigquery-public-data.covid19_jhu_csse.summary`
-                WHERE country_region = '{country}'
-                GROUP BY date
-                ORDER BY date ASC";
+            var sql = $@"SELECT date, cumulative_confirmed as num_reports
+                FROM `bigquery-public-data.covid19_open_data.covid19_open_data`
+                WHERE cumulative_confirmed > 0 and country_name = '{country}' and subregion1_code is NULL";
 
             var table = await GetOrCreateTable(client, logger);
 
