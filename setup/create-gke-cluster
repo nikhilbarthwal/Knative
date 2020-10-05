@@ -13,7 +13,7 @@ gcloud services enable \
 
 # Create GKE cluster
 gcloud beta container clusters create ${CLUSTER_NAME} \
-  --addons HorizontalPodAutoscaling,HttpLoadBalancing \
+  --addons HorizontalPodAutoscaling,HttpLoadBalancing,Istio \
   --zone ${CLUSTER_ZONE} \
   --cluster-version ${CLUSTER_MASTER_VERSION} \
   --machine-type ${CLUSTER_NODE_MACHINE_TYPE} \
