@@ -6,7 +6,7 @@ This tutorial shows how to use different parts of [Knative](https://www.knative.
 
 There's a [presentation](https://speakerdeck.com/nikhilbarthwal/knative) that accompanies the tutorial.
 
-[![Serverless with Knative](./docs/images/serverless-with-knative.png)](https://speakerdeck.com/nikhilbarthwal/knative)
+[![Serverless with Knative](./docs/banner.jpg)](https://speakerdeck.com/nikhilbarthwal/knative)
 
 ## Setup
 
