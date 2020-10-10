@@ -55,12 +55,12 @@ For event consumer, we'll use an Event Display service that simply logs out rece
 
 ### Docker image
 
-Build and push the Docker image (replace `{username}` with your actual DockerHub):
+Build and push the Docker image (Replace `{project-id}` with your GCP project name):
 
 ```bash
-docker build -t {username}/event-display:v1 .
+docker build -t gcr.io/{project-id}/event-display:v1 .
 
-docker push {username}/event-display:v1
+docker push gcr.io/{project-id}/event-display:v1
 ```
 
 ### Knative Service

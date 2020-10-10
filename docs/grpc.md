@@ -16,12 +16,12 @@ Follow the instructions for your preferred language to create a simple gRPC serv
 
 ## Build and push Docker image
 
-Build and push the Docker image (replace `{username}` with your actual DockerHub):
+Build and push the Docker image (Replace `{project-id}` with your Project name):
 
 ```bash
-docker build -t {username}/grpc-greeter:v1 .
+docker build -t gcr.io/{project-id}/grpc-greeter:v1 .
 
-docker push {username}/grpc-greeter:v1
+docker push gcr.io/{project-id}/grpc-greeter:v1
 ```
 
 ## Deploy the Knative service

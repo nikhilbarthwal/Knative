@@ -12,12 +12,12 @@ You can either create your 'Hello World' service as described in Knative Serving
 
 ## Build and push Docker image
 
-In folder of your language of choice, build and push the container image defined by `Dockerfile`. Replace `{username}` with your DockerHub username:
+In folder of your language of choice, build and push the container image defined by `Dockerfile`. Replace `{project-id}` with your Project name:
 
-```bash
-docker build -t {username}/helloworld:v1 .
+```sh
+docker build -t gcr.io/{project-id}/helloworld:v1 .
 
-docker push {username}/helloworld:v1
+docker push gcr.io/{project-id}/helloworld:v1
 ```
 
 ## Deploy the Knative service
@@ -26,13 +26,13 @@ Take a look at [service-v1.yaml](../serving/helloworld/service-v1.yaml) file whe
 
 After the container is pushed, deploy the Knative service:
 
-```bash
+```sh
 kubectl apply -f service-v1.yaml
 ```
 
 Check that pods are created and all Knative constructs (service, configuration, revision, route) have been deployed:
 
-```bash
+```sh
 kubectl get pod,ksvc,configuration,revision,route
 
 NAME                                                      READY     STATUS    RESTARTS

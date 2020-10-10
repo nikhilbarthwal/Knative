@@ -1,8 +1,8 @@
 #!/bin/bash
 
-export KNATIVE_VERSION="0.13.0"
+export KNATIVE_SERVING_VERSION="0.18.0"
 
-export ISTIO_VERSION="1.4.4"
+export KNATIVE_EVENTING_VERSION="0.18.1"
 
 export PROJECT_ID="nikhilbarthwal-knative"
 

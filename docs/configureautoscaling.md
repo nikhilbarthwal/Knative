@@ -34,12 +34,12 @@ Let's deploy a service to showcase autoscaling, by essentially sleeping for 4,00
 
 ## Build and push Docker image
 
-In [sleepingservice](../serving/sleepingservice/) folder, go to the folder for the language of your choice ([csharp](../serving/sleepingservice/csharp/), [python](../serving/sleepingservice/python/)). In that folder, build and push the container image. Replace `{username}` with your DockerHub username:
+In [sleepingservice](../serving/sleepingservice/) folder, go to the folder for the language of your choice ([csharp](../serving/sleepingservice/csharp/), [python](../serving/sleepingservice/python/)). In that folder, build and push the container image. Replace `{project-id}` with your GCP project name:
 
 ```bash
-docker build -t {username}/sleepingservice:v1 .
+docker build -t gcr.io/{project-id}/sleepingservice:v1 .
 
-docker push {username}/sleepingservice:v1
+docker push gcr.io/{project-id}/sleepingservice:v1
 ```
 
 ## Configure autoscaling
