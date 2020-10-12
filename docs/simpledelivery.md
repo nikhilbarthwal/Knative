@@ -48,10 +48,16 @@ cronjobsource-source-3c465b71-4bbe-4611-a816-a73a75cf8681-66ps5   1/1     Runnin
 service-x25xg-deployment-55f957448-rtljx                          2/2     Running   0          2m57s
 ```
 
+Get the container name:
+
+```bash
+kubectl get pods
+```
+
 Check the logs of the service. You should see messages from the CronJobSource:
 
 ```bash
-kubectl logs service-x25xg-deployment-55f957448-rtljx -c user-container
+kubectl logs {container-name} -c user-container
 
 info: event_display.Startup[0]
       Event Display received event: {"message":"Hello world from cron!"}

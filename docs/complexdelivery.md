@@ -81,11 +81,23 @@ service1-x25xg-deployment-55f957448-rtljx                         2/2     Runnin
 service2-5tpzm-deployment-58c6bcb455-vxdg                         2/2     Running   0          2m57s
 ```
 
+Get the container name:
+
+```bash
+kubectl get pods
+```
+
 Check the logs of the services. You should see messages from the CronJobSource in each service:
 
 ```bash
-kubectl logs service-x25xg-deployment-55f957448-rtljx -c user-container
 
-info: event_display.Startup[0]
-      Event Display received event: {"message":"Hello world from cron!"}
+kubectl logs {container-name} -c user-container
+
+[2020-10-12 04:11:02 +0000] [1] [INFO] Starting gunicorn 20.0.4
+[2020-10-12 04:11:02 +0000] [1] [INFO] Listening at: http://0.0.0.0:8080 (1)
+[2020-10-12 04:11:02 +0000] [1] [INFO] Using worker: threads
+[2020-10-12 04:11:02 +0000] [8] [INFO] Booting worker with pid: 8
+[2020-10-12 04:11:02 +0000] [8] [INFO] Event Display starting
+[2020-10-12 04:11:03 +0000] [8] [INFO] Event Display received event: {"message":"Hello world from ping!"}
+[2020-10-12 04:12:00 +0000] [8] [INFO] Event Display received event: {"message":"Hello world from ping!"}
 ```

@@ -21,6 +21,8 @@ bld/
 
 # Roslyn cache directories
 *.ide/
+.project
+.pydevproject
 
 # MSTest test Results
 [Tt]est[Rr]esult*/
