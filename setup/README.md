@@ -40,6 +40,12 @@ You can check if Istio installed properly with:
 kubectl get pods -n istio-system
 ```
 
+Now change to the setup directory
+
+```sh
+cd ../../..
+```
+
 ## Install Knative Serving
 
 ```sh
