@@ -4,6 +4,8 @@ export KNATIVE_SERVING_VERSION="0.18.0"
 
 export KNATIVE_EVENTING_VERSION="0.18.1"
 
+export KNATIVE_VERSION="0.18.0"
+
 export PROJECT_ID="nikhilbarthwal-knative"
 
 export CLUSTER_NAME="knative"
