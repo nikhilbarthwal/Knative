@@ -8,45 +8,11 @@ Edit [config](config) file for your setup.
 
 ## Create a GKE cluster
 
-Create a GKE cluster *without* Istio add-on. We do this because the Istio version of the add-on usually lags behind what Knative expects:
-
 ```sh
 ./create-gke-cluster
 ```
 
-## Install Istio
-
-There's now an installation script for Istio in
-[net-istio](https://github.com/knative-sandbox/net-istio.git) repo. Script
-seems to assume Linux (didn't work on MacOS for me), so I suggest to run it in
-Cloud Shell, if you don't have a Linux environment.
-
-Clone the repo:
-
-```sh
-git clone https://github.com/knative-sandbox/net-istio.git
-```
-
-Install stable Istio with minimal Istio configuration:
-
-```sh
-cd net-istio/third_party/istio-stable
-./install-istio.sh istio-minimal.yaml
-```
-
-You can check if Istio installed properly with:
-
-```sh
-kubectl get pods -n istio-system
-```
-
-Now change to the setup directory
-
-```sh
-cd ../../..
-```
-
-## Install Knative Serving
+## Install Istio & Knative Serving
 
 ```sh
 ./install-serving
@@ -58,27 +24,21 @@ cd ../../..
 ./install-eventing
 ```
 
-## (Optional) Install observability features
+You probably need a Broker in the default namespace with Knative Eventing.
+You can follow instructions in [Broker Creation](../docs/brokercreation.md) page to do that.
 
-Install observability features to enable logging, metrics, and request tracing in Serving and Eventing components:
-
-```sh
-./install-monitoring
-```
-
-## (Optional) Install Knative with GCP
+## Install Knative GCP
 
 If you intend to read Google Cloud events, install [Knative GCP](https://github.com/google/knative-gcp) components.
 
 There are 2 ways of setting up authentication in Knative GCP:
 
 1. Kubernetes secrets
-2. Workload identity
+2. Workload identity (recommended)
 
-Workload identity is the recommended mechanism but we have scripts for both.
 Pick one of the mechanisms and use appropriate scripts.
 
-Install Knative with GCP:
+Install Knative GCP:
 
 ```sh
 # Kubernetes secrets
@@ -96,6 +56,14 @@ Configure a Pub/Sub enabled Service Account for Data Plane:
 
 # Workload identity
 ./install-dataplane-serviceaccount workload
+```
+
+## Install Tekton Pipelines
+
+Install Tekton Pipelines, if you want to run build samples:
+
+```sh
+./install-tekton
 ```
 
 -------

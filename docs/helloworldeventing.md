@@ -27,21 +27,8 @@ If not, you can follow the instructions on Knative Eventing Installation [page](
 
 ## Broker
 
-We need to inject a Broker in the namespace where we want to receive messages.
-Let's use the default namespace.
-
-```bash
-kubectl label ns default eventing.knative.dev/injection=enabled
-```
-
-You should see a Broker in the namespace:
-
-```bash
-kubectl get broker
-
-NAME      READY   REASON   URL
-default   True             http://broker-ingress.knative-eventing.svc.cluster.local/default/default
-```
+Make sure there's a Broker in the default namespace by following instructions in
+[Broker Creation](brokercreation.md) page.
 
 ## Consumer
 
@@ -149,25 +136,13 @@ You should get HTTP 202 back:
 < Date: Fri, 29 Nov 2019 13:06:17 GMT
 ```
 
-Get the container name:
-
-```bash
-kubectl get pods
-```
-
-
 The logs of the Event Display pod should show the message:
 
 ```bash
 kubectl logs {container-name}
 
-[2020-10-12 03:22:06 +0000] [1] [INFO] Starting gunicorn 20.0.4
-[2020-10-12 03:22:06 +0000] [1] [INFO] Listening at: http://0.0.0.0:8080 (1)
-[2020-10-12 03:22:06 +0000] [1] [INFO] Using worker: threads
-[2020-10-12 03:22:06 +0000] [8] [INFO] Booting worker with pid: 8
-[2020-10-12 03:22:06 +0000] [8] [INFO] Event Display starting
-[2020-10-12 03:23:24 +0000] [8] [INFO] Event Display received event: {"msg":"Hello Knative1!"}
-
+info: event_display.Startup[0]
+      Event Display received event: {"msg":"Hello Knative1!"}
 ```
 
 If you send another message without `event-display` type, that won't trigger the Event Display. 

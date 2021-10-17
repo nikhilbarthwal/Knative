@@ -43,9 +43,9 @@ Create 2 `CloudSchedulerSources` to create Cloud Scheduler jobs to call
 `QueryRunner` for 2 different countries (United Kingdom and Cyprus in this
 case).
 
-[schedulersource-uk.yaml](../eventing/processing-pipelines/bigquery/schedulersource-uk.yaml)
+[schedulersource-uk.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/schedulersource-uk.yaml)
 and
-[schedulersource-cy.yaml](../eventing/processing-pipelines/bigquery/schedulersource-cy.yaml)
+[schedulersource-cy.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/schedulersource-cy.yaml)
 defines the `CloudSchedulerSources` with the schedule and country information
 (under `data` field).
 
@@ -80,7 +80,7 @@ cre-scheduler-714c0b82-c441-42f4-8f99-0e2eac9a5869  europe-west1  0 17 * * * (UT
 Create a `CloudStorageSource` to connect storage events from the bucket where
 the charts will be saved to the `Broker` in Knative Eventing.
 
-[storagesource-charts.yaml](../eventing/processing-pipelines/bigquery/storagesource-charts.yaml)
+[storagesource-charts.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/storagesource-charts.yaml)
 defines the `CloudStorageSource`. Make sure you update the bucket name to the
 actual bucket name in your project.
 
@@ -101,20 +101,8 @@ storagesource-charts         True
 
 ## Broker
 
-If there's no Broker in the default namespace already, label the namespace:
-
-```bash
-kubectl label ns default eventing.knative.dev/injection=enabled
-```
-
-You should see a Broker in the namespace:
-
-```bash
-kubectl get broker
-
-NAME      READY   REASON   URL                                               AGE
-default   True             http://default-broker.default.svc.cluster.local   52m
-```
+Make sure there's a Broker in the default namespace by following instructions in
+[Broker Creation](brokercreation.md) page.
 
 ## Query Runner
 
@@ -124,10 +112,10 @@ the results to a new BigQuery table and passes a custom event onwards.
 
 ### Service
 
-The code of the service is in [query-runner](../eventing/processing-pipelines/bigquery/query-runner)
+The code of the service is in [query-runner](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/query-runner)
 folder.
 
-Inside the top level [processing-pipelines](../eventing/processing-pipelines) folder, build
+Inside the top level [processing-pipelines](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines) folder, build
 and push the container image:
 
 ```bash
@@ -137,7 +125,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/bigquery/query-runner/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/query-runner/kservice.yaml).
 Make sure you update the `PROJECT_ID` with your actual project id. This is
 needed for the BigQuery client.
 
@@ -151,7 +139,7 @@ The trigger of the service filters on Cloud Scheduler execute events:
 `com.google.cloud.scheduler.job.execute`.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/bigquery/query-runner/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/query-runner/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml
@@ -166,10 +154,10 @@ Cloud Storage.
 
 ### Service
 
-The code of the service is in [chart-creator](../eventing/processing-pipelines/bigquery/chart-creator)
+The code of the service is in [chart-creator](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/chart-creator)
 folder.
 
-Inside the [chart-creator/python](../eventing/processing-pipelines/bigquery/chart-creator/python) folder, build
+Inside the [chart-creator/python](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/chart-creator/python) folder, build
 and push the container image:
 
 ```bash
@@ -179,7 +167,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/bigquery/chart-creator/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/chart-creator/kservice.yaml).
 Make sure you update the `BUCKET` env variable to the bucket name you created
 earlier.
 
@@ -193,7 +181,7 @@ The trigger of the service filters on `ddev.knative.samples.querycompleted` even
 types which is the custom event type emitted by the query service.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/bigquery/chart-creator/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/chart-creator/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml
@@ -209,10 +197,10 @@ for more details on how to setup SendGrid.
 
 ### Service
 
-The code of the service is in [notifier](../eventing/processing-pipelines/bigquery/notifier)
+The code of the service is in [notifier](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/notifier)
 folder.
 
-Inside the [notifier/python](../eventing/processing-pipelines/bigquery/notifier/python) folder, build
+Inside the [notifier/python](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/notifier/python) folder, build
 and push the container image:
 
 ```bash
@@ -222,7 +210,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/bigquery/notifier/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/notifier/kservice.yaml).
 Make sure you update `TO_EMAILS` and `SENDGRID_API_KEY` accordingly.
 
 ```bash
@@ -236,7 +224,7 @@ which is the event type emitted by the Cloud Storage when a file is saved to the
 bucket.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/bigquery/notifier/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/bigquery/notifier/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml

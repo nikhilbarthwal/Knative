@@ -17,19 +17,20 @@ Istio on Google Kubernetes Engine (GKE). You can follow the instructions there.
 
 We tested this tutorial on:
 
-* GKE: 1.17.12-gke.500
-* Istio: 1.7.1
-* Knative Serving: 0.18.0
-* Knative Eventing: 0.18.1
-* Knative-GCP: 0.18.0
-* Tekton: 0.14.2
+* GKE: 1.20.6-gke.1000
+* Istio: 1.9.1
+* Knative Serving: 0.23.1
+* Knative Eventing: 0.23.2
+* Knative-GCP: 0.23.0
+* Tekton: 0.22.0
 
 If everything worked, all Knative components should show a `STATUS` of `Running`:
 
-```bash
+```sh
 kubectl get pods -n knative-serving
 kubectl get pods -n knative-eventing
-kubectl get pods -n knative-monitoring
+kubectl get pods -n cloud-run-events
+kubectl get pods -n tekton-pipelines
 ```
 
 ## Samples
@@ -67,10 +68,9 @@ Knative Eventing with Google Cloud
 Build
 
 * Tekton Pipelines
-  * [Hello Tekton](docs/hellotekton.md)
-  * [Hello World Build](docs/tekton-helloworldbuild.md)
+  * [Hello World Tekton](docs/hellotekton.md)
+  * [Google Container Registry Build](docs/tekton-gcrbuild.md)
   * [Docker Hub Build](docs/tekton-dockerbuild.md)
-  * [Kaniko Task Build](docs/tekton-kanikotaskbuild.md)
 
 * Knative Build (Deprecated)
   * [Hello World Build](docs/deprecated/helloworldbuild.md)

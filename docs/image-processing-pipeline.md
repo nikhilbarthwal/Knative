@@ -43,7 +43,7 @@ gsutil mb gs://${BUCKET2}
 Create a `CloudStorageSource` to connect storage events from the first bucket to
 the `Broker` in Knative Eventing.
 
-[cloudstoragesource.yaml](../eventing/processing-pipelines/image/cloudstoragesource.yaml)
+[cloudstoragesource.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/cloudstoragesource.yaml)
 defines the `CloudStorageSource`. Make sure you update the bucket name to the
 actual bucket name in your project.
 
@@ -64,20 +64,8 @@ storagesource-images-input   True             23s
 
 ## Broker
 
-If there's no Broker in the default namespace already, label the namespace:
-
-```bash
-kubectl label ns default eventing.knative.dev/injection=enabled
-```
-
-You should see a Broker in the namespace:
-
-```bash
-kubectl get broker
-
-NAME      READY   REASON   URL                                               AGE
-default   True             http://default-broker.default.svc.cluster.local   52m
-```
+Make sure there's a Broker in the default namespace by following instructions in
+[Broker Creation](brokercreation.md) page.
 
 ## Enable Vision API
 
@@ -94,10 +82,10 @@ to determine if the image is safe. If so, it passes a custom event onwards.
 
 ### Service
 
-The code of the service is in [filter](../eventing/processing-pipelines/image/filter)
+The code of the service is in [filter](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/filter)
 folder.
 
-Inside the top level [processing-pipelines](../eventing/processing-pipelines) folder, build
+Inside the top level [processing-pipelines](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines) folder, build
 and push the container image:
 
 ```bash
@@ -107,7 +95,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/image/filter/kservice.yaml):
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/filter/kservice.yaml):
 
 ```bash
 kubectl apply -f kservice.yaml
@@ -119,7 +107,7 @@ The trigger of the service filters on Cloud Storage finalize events:
 `com.google.cloud.storage.object.finalize`.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/image/filter/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/filter/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml
@@ -133,10 +121,10 @@ event onwards.
 
 ### Service
 
-The code of the service is in [resizer](../eventing/processing-pipelines/image/resizer)
+The code of the service is in [resizer](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/resizer)
 folder.
 
-Inside the top level [processing-pipelines](../eventing/processing-pipelines) folder, build
+Inside the top level [processing-pipelines](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines) folder, build
 and push the container image:
 
 ```bash
@@ -146,7 +134,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/image/resizer/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/resizer/kservice.yaml).
 Make sure you update the `BUCKET` env variable to the value of `$BUCKET2`:
 
 ```bash
@@ -159,7 +147,7 @@ The trigger of the service filters on `dev.knative.samples.fileuploaded` event
 types which is the custom event type emitted by the filter service.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/image/resizer/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/resizer/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml
@@ -173,10 +161,10 @@ image to the output bucket.
 
 ### Service
 
-The code of the service is in [watermarker](../eventing/processing-pipelines/image/watermarker)
+The code of the service is in [watermarker](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/watermarker)
 folder.
 
-Inside the top level [processing-pipelines](../eventing/processing-pipelines) folder, build
+Inside the top level [processing-pipelines](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines) folder, build
 and push the container image:
 
 ```bash
@@ -186,7 +174,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/image/watermarker/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/watermarker/kservice.yaml).
 Make sure you update the `BUCKET` env variable to the value of `$BUCKET2`:
 
 ```bash
@@ -199,7 +187,7 @@ The trigger of the service filters on `dev.knative.samples.fileresized` event
 types which is the custom event type emitted by the resizer service.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/image/watermarker/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/watermarker/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml
@@ -212,10 +200,10 @@ saves the labels to the output bucket.
 
 ### Service
 
-The code of the service is in [labeler](../eventing/processing-pipelines/image/labeler)
+The code of the service is in [labeler](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/labeler)
 folder.
 
-Inside the top level [processing-pipelines](../eventing/processing-pipelines) folder, build
+Inside the top level [processing-pipelines](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines) folder, build
 and push the container image:
 
 ```bash
@@ -225,7 +213,7 @@ docker push nikhilbarthwal/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
-[kservice.yaml](../eventing/processing-pipelines/image/labeler/kservice.yaml).
+[kservice.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/labeler/kservice.yaml).
 Make sure you update the `BUCKET` env variable to the value of `$BUCKET2`:
 
 ```bash
@@ -238,7 +226,7 @@ The trigger of the service filters on `dev.knative.samples.fileuploaded` event
 types which is the custom event type emitted by the filter service.
 
 Create the trigger for the service defined in
-[trigger.yaml](../eventing/processing-pipelines/image/labeler/trigger.yaml):
+[trigger.yaml](https://github.com/GoogleCloudPlatform/eventarc-samples/tree/main/processing-pipelines/image/labeler/trigger.yaml):
 
 ```bash
 kubectl apply -f trigger.yaml

@@ -9,14 +9,12 @@ set -v
 # https://github.com/google/knative-gcp/blob/master/docs/install/install-knative-gcp.md
 
 # Install Cloud Run Eventing CRDs
-kubectl apply --selector messaging.cloud.google.com/crd-install=true \
--f "https://github.com/google/knative-gcp/releases/download/v${KNATIVE_SERVING_VERSION}/cloud-run-events.yaml"
 kubectl apply --selector events.cloud.google.com/crd-install=true \
--f "https://github.com/google/knative-gcp/releases/download/v${KNATIVE_SERVING_VERSION}/cloud-run-events.yaml"
+  -f "https://github.com/google/knative-gcp/releases/download/v${KNATIVE_GCP_VERSION}/cloud-run-events.yaml"
 
 # Install Cloud Run Eventing
 kubectl apply \
--f "https://github.com/google/knative-gcp/releases/download/v${KNATIVE_SERVING_VERSION}/cloud-run-events.yaml"
+  -f "https://github.com/google/knative-gcp/releases/download/v${KNATIVE_GCP_VERSION}/cloud-run-events.yaml"
 
 # Needed for init scripts
 curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/lib.sh --output lib.sh
@@ -25,10 +23,11 @@ gcloud config set run/cluster_location ${CLUSTER_ZONE}
 gcloud config set project ${PROJECT_ID}
 
 if [ "$1" == "workload" ]; then
-  curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/init_control_plane_gke.sh --output init_control_plane_gke.sh
-  bash init_control_plane_gke.sh
-  rm init_control_plane_gke.sh
+  echo "TODO"
   #bash <(curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/init_control_plane_gke.sh)
+  #curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/init_control_plane_gke.sh --output init_control_plane_gke.sh
+  #bash init_control_plane_gke.sh
+  #rm init_control_plane_gke.sh
 else
   #bash <(curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/init_control_plane.sh)
   curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/init_control_plane.sh --output init_control_plane.sh
@@ -37,3 +36,6 @@ else
 fi
 
 rm lib.sh
+
+# Check pods have STATUS 'Running'
+# kubectl get pods -n cloud-run-events

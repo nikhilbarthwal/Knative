@@ -34,7 +34,7 @@ spec:
     - name: url
       value: gcr.io/nikhilbarthwal-knative/helloworld:tekton
 ---
-apiVersion: tekton.dev/v1alpha1
+apiVersion: tekton.dev/v1beta1
 kind: TaskRun
 metadata:
   name: build-helloworld-docker
@@ -42,19 +42,17 @@ spec:
   serviceAccountName: build-bot
   taskRef:
     name: build-docker-image-from-git-source
-  inputs:
-    resources:
+  params:
+    - name: pathToDockerFile
+      value: Dockerfile
+    - name: pathToContext
+      value: $(resources.inputs.docker-source.path)/serving/helloworld/csharp
+  resources:
+    inputs:
       - name: docker-source
         resourceRef:
           name: git-knative-tutorial
-    params:
-      - name: pathToDockerFile
-        value: Dockerfile
-      - name: pathToContext
-        # Point to Dockerfile
-        value: /workspace/docker-source/serving/helloworld/csharp
-  outputs:
-    resources:
+    outputs:
       - name: builtImage
         resourceRef:
           name: image-docker-knative-tutorial
