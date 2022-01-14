@@ -55,7 +55,7 @@ dotnet add package Google.Protobuf
 dotnet add package Grpc.Tools
 ```
 
-Create `Protos` folder and add `greet.proto` from gRPC Greeter service from the previous step.  
+Create `Protos` folder and add `greet.proto` from gRPC Greeter service from the previous step.
 
 ```bash
 mkdir Protos

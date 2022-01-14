@@ -35,7 +35,7 @@ Add Translation API NuGet package to our project:
 dotnet add package Google.Cloud.Translation.V2
 ```
 
-[Startup.cs](../eventing/translation/csharp/Startup.cs) extracts `TranslationRequest` out of the request.  
+[Startup.cs](../eventing/translation/csharp/Startup.cs) extracts `TranslationRequest` out of the request.
 
 ```csharp
 var translationRequest = JsonConvert.DeserializeObject<TranslationRequest>(decodedData);

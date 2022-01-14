@@ -37,4 +37,4 @@ spec:
         autoscaling.knative.dev/maxScale: "6"
     spec:
       containers:
-        - image: gcr.io/nikhilbarthwal-knative/sleepingservice:v1
+        - image: gcr.io/knative/sleepingservice:v1

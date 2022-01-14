@@ -37,9 +37,9 @@ Let's deploy a service to showcase autoscaling, by essentially sleeping for 4,00
 In [sleepingservice](../serving/sleepingservice/) folder, go to the folder for the language of your choice ([csharp](../serving/sleepingservice/csharp/), [python](../serving/sleepingservice/python/)). In that folder, build and push the container image. Replace `{username}` with your DockerHub username:
 
 ```bash
-docker build -t gcr.io/{project-id}/sleepingservice:v1 .
+docker build -t gcr.io/${PROJECT_ID}/sleepingservice:v1 .
 
-docker push gcr.io/{project-id}/sleepingservice:v1
+docker push gcr.io/${PROJECT_ID}/sleepingservice:v1
 ```
 
 ## Configure autoscaling

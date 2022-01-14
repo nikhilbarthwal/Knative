@@ -14,7 +14,7 @@ pip install --upgrade grpcio
 
 ## Install gRPC tools
 
-Python’s gRPC tools include the protocol buffer compiler `protoc` and the special plugin for generating server and client code from a `.proto` service definition. Make sure you have the latest version of the gRPC tools:
+Pythons gRPC tools include the protocol buffer compiler `protoc` and the special plugin for generating server and client code from a `.proto` service definition. Make sure you have the latest version of the gRPC tools:
 
 ```bash
 pip install --upgrade grpcio-tools

@@ -120,8 +120,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=query-runner
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 -f bigquery/${SERVICE_NAME}/csharp/Dockerfile .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1 -f bigquery/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -162,8 +162,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=chart-creator
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1 .
+docker push gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -205,8 +205,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=notifier
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1 .
+docker push gcr.io/${PROJECT_ID}/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in

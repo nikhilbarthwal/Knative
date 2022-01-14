@@ -48,7 +48,7 @@ var storageUrl = (string)ConstructStorageUrl(json);
 
 private string ConstructStorageUrl(dynamic json)
 {
-    return json == null? null 
+    return json == null? null
         : string.Format("gs://{0}/{1}", json.bucket, json.name);
 }
 ```

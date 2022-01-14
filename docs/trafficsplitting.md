@@ -33,8 +33,8 @@ spec:
       name: helloworld-v1
     spec:
       containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v1
+        # Replace {project-id} with your actual DockerHub
+        - image: gcr.io/{project-id}/helloworld:v1
           env:
             - name: TARGET
               value: "v1"
@@ -96,8 +96,8 @@ spec:
       name: helloworld-v4
     spec:
       containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v1
+        # Replace {project-id} with your actual project
+        - image: gcr.io/{project-id}/helloworld:v1
           env:
             - name: TARGET
               value: "v4"
@@ -171,8 +171,8 @@ spec:
       name: helloworld-v4
     spec:
       containers:
-        # Replace {username} with your actual DockerHub
-        - image: docker.io/{username}/helloworld:v4
+        # Replace {project-id} with your actual project
+        - image: gcr.io/{project-id}/helloworld:v4
           env:
             - name: TARGET
               value: "v4"

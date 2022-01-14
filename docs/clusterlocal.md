@@ -51,7 +51,7 @@ kubectl label kservice helloworld serving.knative.dev/visibility=cluster-local
 service.serving.knative.dev/helloworld labeled
 ```
 
-The service now is local and you cannot curl it with the public URL. 
+The service now is local and you cannot curl it with the public URL.
 
 To make it public again, you can remove the label:
 
@@ -60,5 +60,4 @@ kubectl label kservice helloworld serving.knative.dev/visibility-
 
 service.serving.knative.dev/helloworld labeled
 ```
-And, curl should work again now. 
-
+And, curl should work again now.

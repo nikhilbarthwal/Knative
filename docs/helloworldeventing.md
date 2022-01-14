@@ -45,9 +45,9 @@ For event consumer, we'll use an Event Display service that simply logs out rece
 Build and push the Docker image (Replace `{project-id}` with your GCP project name):
 
 ```bash
-docker build -t gcr.io/{project-id}/event-display:v1 .
+docker build -t gcr.io/${PROJECT_ID}/event-display:v1 .
 
-docker push gcr.io/{project-id}/event-display:v1
+docker push gcr.io/${PROJECT_ID}/event-display:v1
 ```
 
 ### Knative Service
@@ -145,4 +145,4 @@ info: event_display.Startup[0]
       Event Display received event: {"msg":"Hello Knative1!"}
 ```
 
-If you send another message without `event-display` type, that won't trigger the Event Display. 
+If you send another message without `event-display` type, that won't trigger the Event Display.

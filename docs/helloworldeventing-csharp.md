@@ -8,7 +8,7 @@ Create an empty ASP.NET Core app:
 dotnet new web -o event-display
 ```
 
-Inside the `event-display/csharp` folder, update [Startup.cs](../eventing/event-display/csharp/Startup.cs) to have a logger to print the contents of the event. 
+Inside the `event-display/csharp` folder, update [Startup.cs](../eventing/event-display/csharp/Startup.cs) to have a logger to print the contents of the event.
 
 Change the log level in `appsettings.json` to `Information`:
 

@@ -20,7 +20,7 @@ task.tekton.dev/build-docker-image-from-git-source created
 
 ## Design the TaskRun
 
-Next, let's define a TaskRun to run the Task. 
+Next, let's define a TaskRun to run the Task.
 
 Take a look at [taskrun-build-helloworld-gcr.yaml](../build/taskrun-build-helloworld-gcr.yaml) file.
 This TaskRun defines the source code to build, the location of the image to push to and it refers to the

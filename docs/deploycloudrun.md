@@ -2,7 +2,7 @@
 
 ![Serverless on Google Cloud](./images/serverless-on-google-cloud.png)
 
-[Cloud Run](https://cloud.google.com/run/) is part of Google Cloud and it is a managed serverless platform that enables you to run stateless containers invocable via HTTP requests.  
+[Cloud Run](https://cloud.google.com/run/) is part of Google Cloud and it is a managed serverless platform that enables you to run stateless containers invocable via HTTP requests.
 
 Cloud Run is built from Knative, letting you choose to run your containers either fully managed with Cloud Run, or in your Google Kubernetes Engine cluster with Cloud Run on GKE.
 
@@ -50,7 +50,7 @@ In [helloworld](../serving/helloworld/) folder, go to the folder for the languag
 gcloud builds submit --tag gcr.io/${PROJECT_ID}/helloworld:v1
 ```
 
-This builds and pushes the image to GCR using Cloud Build.  
+This builds and pushes the image to GCR using Cloud Build.
 
 ## Deploy
 
@@ -70,9 +70,9 @@ To specify the platform yourself, pass `--platform managed`. Or, to make this th
 
 Service name (helloworld):
 Deploying container to Cloud Run service [helloworld] in project [nikhilbarthwal-knative] region [europe-west1]
-✓ Deploying... Done.
-  ✓ Creating Revision...
-  ✓ Routing traffic...
+ Deploying... Done.
+   Creating Revision...
+   Routing traffic...
 Done.
 Service [helloworld] revision [helloworld-00011] has been deployed and is serving 100 percent of traffic at https://helloworld-paelpl5x6a-ew.a.run.app
 ```
@@ -85,7 +85,7 @@ You can also see the service in Cloud Run console:
 
 ## Test the service
 
-We can test the service by visiting the url mentioned during deployment and in Cloud Run console. 
+We can test the service by visiting the url mentioned during deployment and in Cloud Run console.
 
 One thing you might realize is that our service simply prints `Hello World` instead of `Hello v1`. Let's fix that in the last step.
 
@@ -106,9 +106,9 @@ In Cloud Run, you can set environment variables either through the console or co
 ```bash
 gcloud run services update helloworld --update-env-vars TARGET='v1'
 
-✓ Deploying... Done.
-  ✓ Creating Revision...
-  ✓ Routing traffic...
+ Deploying... Done.
+   Creating Revision...
+   Routing traffic...
 Done.
 ```
 
