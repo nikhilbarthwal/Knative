@@ -2,7 +2,7 @@
 
 In Knative Eventing, you'd typically use Broker and Trigger to receive and filter messages. This is explained in more detail on [Knative Eventing](https://www.knative.dev/docs/eventing/) page:
 
-![Broker and Trigger](https://www.knative.dev/docs/eventing/images/broker-trigger-overview.svg)
+![Broker and Trigger](https://knative.dev/blog/images/knative-eventing.png)
 
 Knative Eventing has a few different types of [event sources](https://knative.dev/docs/eventing/sources/) (Kubernetes, GitHub, GCP Pub/Sub etc.) that it can listen.
 
