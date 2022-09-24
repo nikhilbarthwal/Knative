@@ -1,4 +1,4 @@
-﻿// Copyright 2019 Google LLC
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
 namespace translation
-{    
+{
     public class Program
     {
         public static void Main(string[] args)

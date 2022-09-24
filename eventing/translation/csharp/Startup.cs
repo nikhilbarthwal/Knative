@@ -1,4 +1,4 @@
-﻿// Copyright 2019 Google LLC
+// Copyright 2019 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -102,7 +102,7 @@ namespace translation
                 throw new ArgumentException("Translation request cannot be null");
             }
 
-            if (string.IsNullOrEmpty(translationRequest.Text)) 
+            if (string.IsNullOrEmpty(translationRequest.Text))
             {
                 throw new ArgumentException("Translation text cannot be empty or null");
             }
