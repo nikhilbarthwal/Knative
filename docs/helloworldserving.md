@@ -15,9 +15,9 @@ You can either create your 'Hello World' service as described in Knative Serving
 In folder of your language of choice, build and push the container image defined by `Dockerfile`. Replace `{project-id}` with your Project name:
 
 ```sh
-docker build -t gcr.io/${PROJECT_ID}/helloworld:v1 .
+docker build -t gcr.io/knative-363517/helloworld:v1 .
 
-docker push gcr.io/${PROJECT_ID}/helloworld:v1
+docker push gcr.io/knative-363517/helloworld:v1
 ```
 
 ## Deploy the Knative service
@@ -106,7 +106,7 @@ The URL of the service follows this format: `{service}.{namespace}.example.com`.
 Make a request to your service:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.xip.io
+curl http://helloworld.default.$ISTIO_INGRESS.sslip.io
 
 Hello v1
 ```

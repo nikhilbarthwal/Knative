@@ -38,7 +38,7 @@ route.serving.knative.dev/helloworld
 Test that the route is also updated and prints out `v2`:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.xip.io
+curl http://helloworld.default.$ISTIO_INGRESS.sslip.io
 
 Hello v2
 ```
@@ -64,9 +64,9 @@ To see this in action, change your main file to say 'Bye' instead of 'Hello':
 Build and push the Docker image tagging with `v3`. Replace `{username}` with your actual Docker Hub username:
 
 ```bash
-docker build -t gcr.io/${PROJECT_ID}/helloworld:v3 .
+docker build -t gcr.io/knative-363517/helloworld:v3 .
 
-docker push gcr.io/${PROJECT_ID}/helloworld:v3
+docker push gcr.io/knative-363517/helloworld:v3
 ```
 
 Once the container image is pushed, create a [service-v3.yaml](../serving/helloworld/service-v3.yaml) file that changes `TARGET` value to `v3` but more importantly, it refers to the new image with tag `v3`.
@@ -80,6 +80,6 @@ kubectl apply -f service-v3.yaml
 Test that the route is updated to `v3` with the new container. It prints not only `v3` (from env variable) but also says Bye (from container):
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.xip.io
+curl http://helloworld.default.$ISTIO_INGRESS.sslip.io
 Bye v3
 ```

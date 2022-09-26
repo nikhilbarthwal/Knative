@@ -38,7 +38,7 @@ kubectl apply -f service-v1.yaml
 You should be able to access it via curl because it's public:
 
 ```bash
-curl http://helloworld.default.$ISTIO_INGRESS.xip.io
+curl http://helloworld.default.$ISTIO_INGRESS.sslip.io
 
 Hello v1
 ```

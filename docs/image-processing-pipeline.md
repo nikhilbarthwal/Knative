@@ -258,7 +258,7 @@ the output bucket:
 ```bash
 gsutil ls gs://${BUCKET2}
 
-gs://nikhilbarthwal-knative-images-output/beach-400x400-watermark.jpeg
-gs://nikhilbarthwal-knative-images-output/beach-400x400.png
-gs://nikhilbarthwal-knative-images-output/beach-labels.txt
+gs://knative-363517-images-output/beach-400x400-watermark.jpeg
+gs://knative-363517-images-output/beach-400x400.png
+gs://knative-363517-images-output/beach-labels.txt
 ```
