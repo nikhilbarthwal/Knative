@@ -24,4 +24,3 @@ COPY --from=build /app/out ./
 
 # Run the web service on container startup.
 ENTRYPOINT ["dotnet", "helloworld.dll"]
-

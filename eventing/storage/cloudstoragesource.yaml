@@ -16,7 +16,7 @@ kind: CloudStorageSource
 metadata:
   name: cloud-storage-source
 spec:
-  bucket: knative-nikhilbarthwal-storage
+  bucket: knative-storage
   sink:
     ref:
       apiVersion: eventing.knative.dev/v1

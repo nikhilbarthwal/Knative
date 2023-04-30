@@ -132,7 +132,7 @@ You should see something similar to this:
 info: event_display.Startup[0]
       Received CloudEvent
       ID: 1192555603721557
-      Source: //storage.googleapis.com/buckets/knative-nikhilbarthwal-storage
+      Source: //storage.googleapis.com/buckets/knative-storage
       Type: com.google.cloud.storage.object.finalize
       Subject: cloudstoragesource.yaml
       DataSchema: https://raw.githubusercontent.com/google/knative-gcp/master/schemas/storage/schema.json
@@ -141,10 +141,10 @@ info: event_display.Startup[0]
       SpecVersion: V1_0
       Data: {
         "kind": "storage#object",
-        "id": "knative-nikhilbarthwal-storage/cloudstoragesource.yaml/1589381560746021",
-        "selfLink": "https://www.googleapis.com/storage/v1/b/knative-nikhilbarthwal-storage/o/cloudstoragesource.yaml",
+        "id": "knative-storage/cloudstoragesource.yaml/1589381560746021",
+        "selfLink": "https://www.googleapis.com/storage/v1/b/knative-storage/o/cloudstoragesource.yaml",
         "name": "cloudstoragesource.yaml",
-        "bucket": "knative-nikhilbarthwal-storage",
+        "bucket": "knative-storage",
         "generation": "1589381560746021",
         "metageneration": "1",
         "contentType": "application/octet-stream",
@@ -154,7 +154,7 @@ info: event_display.Startup[0]
         "timeStorageClassUpdated": "2020-05-13T14:52:40.745Z",
         "size": "825",
         "md5Hash": "ISwFEioV+YaifRbgswAV3w==",
-        "mediaLink": "https://www.googleapis.com/download/storage/v1/b/knative-nikhilbarthwal-storage/o/cloudstoragesource.yaml?generation=1589381560746021&alt=media",
+        "mediaLink": "https://www.googleapis.com/download/storage/v1/b/knative-storage/o/cloudstoragesource.yaml?generation=1589381560746021&alt=media",
         "contentLanguage": "en",
         "crc32c": "41yWsw==",
         "etag": "CKWA3dqLsekCEAE="

@@ -64,9 +64,9 @@ To see this in action, change your main file to say 'Bye' instead of 'Hello':
 Build and push the Docker image tagging with `v3`. Replace `{username}` with your actual Docker Hub username:
 
 ```bash
-docker build -t gcr.io/knative-363517/helloworld:v3 .
+docker build -t gcr.io/knative/helloworld:v3 .
 
-docker push gcr.io/knative-363517/helloworld:v3
+docker push gcr.io/knative/helloworld:v3
 ```
 
 Once the container image is pushed, create a [service-v3.yaml](../serving/helloworld/service-v3.yaml) file that changes `TARGET` value to `v3` but more importantly, it refers to the new image with tag `v3`.

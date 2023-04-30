@@ -92,7 +92,7 @@ You should see something similar to this:
 info: event_display.Startup[0]
       Received CloudEvent
       ID: 1203138894276445
-      Source: //pubsub.googleapis.com/projects/knative-363517/topics/testing
+      Source: //pubsub.googleapis.com/projects/knative/topics/testing
       Type: com.google.cloud.pubsub.topic.publish
       Subject:
       DataSchema:

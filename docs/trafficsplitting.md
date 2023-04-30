@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
         # Replace {project-id} with your actual DockerHub
-        - image: gcr.io/knative-363517/helloworld:v1
+        - image: gcr.io/knative/helloworld:v1
           env:
             - name: TARGET
               value: "v1"
@@ -97,7 +97,7 @@ spec:
     spec:
       containers:
         # Replace {project-id} with your actual project
-        - image: gcr.io/knative-363517/helloworld:v1
+        - image: gcr.io/knative/helloworld:v1
           env:
             - name: TARGET
               value: "v4"
@@ -172,7 +172,7 @@ spec:
     spec:
       containers:
         # Replace {project-id} with your actual project
-        - image: gcr.io/knative-363517/helloworld:v4
+        - image: gcr.io/knative/helloworld:v4
           env:
             - name: TARGET
               value: "v4"

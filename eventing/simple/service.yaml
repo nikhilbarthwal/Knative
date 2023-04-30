@@ -19,4 +19,4 @@ spec:
   template:
     spec:
       containers:
-        - image: gcr.io/nikhilbarthwal-knative/event-display:v1
+        - image: gcr.io/knative/event-display:v1
