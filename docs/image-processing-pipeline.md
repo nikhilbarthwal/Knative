@@ -90,8 +90,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=filter
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -129,8 +129,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=resizer
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -169,8 +169,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=watermarker
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -208,8 +208,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=labeler
-docker build -t nikhilbarthwal/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push nikhilbarthwal/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -258,7 +258,7 @@ the output bucket:
 ```bash
 gsutil ls gs://${BUCKET2}
 
-gs://knative-363517-images-output/beach-400x400-watermark.jpeg
-gs://knative-363517-images-output/beach-400x400.png
-gs://knative-363517-images-output/beach-labels.txt
+gs://knative-images-output/beach-400x400-watermark.jpeg
+gs://knative-images-output/beach-400x400.png
+gs://knative-images-output/beach-labels.txt
 ```

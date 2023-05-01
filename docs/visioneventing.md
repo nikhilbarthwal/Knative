@@ -88,8 +88,8 @@ You should see something similar to this:
 info: vision.Startup[0]
       Received content: {
         "kind": "storage#object",
-        "id": "knative-nikhilbarthwal-storage/beach.jpg/1589382953998973",
-        "selfLink": "https://www.googleapis.com/storage/v1/b/knative-nikhilbarthwal-storage/o/beach.jpg",
+        "id": "knative-storage/beach.jpg/1589382953998973",
+        "selfLink": "https://www.googleapis.com/storage/v1/b/knative-storage/o/beach.jpg",
         "name": "beach.jpg",
         "bucket": "knative-nikhilbarthwal-storage",
         "generation": "1589382953998973",
@@ -107,7 +107,7 @@ info: vision.Startup[0]
         "etag": "CP20ivOQsekCEAE="
       }
 info: vision.Startup[0]
-      Storage url: gs://knative-nikhilbarthwal-storage/beach.jpg
+      Storage url: gs://knative-storage/beach.jpg
 info: vision.Startup[0]
       This picture is labelled: Sky,Body of water,Sea,Nature,Coast,Water,Sunset
 ```

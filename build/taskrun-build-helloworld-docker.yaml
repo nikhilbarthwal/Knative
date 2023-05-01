@@ -21,7 +21,7 @@ spec:
     - name: revision
       value: master
     - name: url
-      # Point to Git url
+      # Point to your repo
       value: https://github.com/nikhilbarthwal/knative
 ---
 apiVersion: tekton.dev/v1alpha1
@@ -32,7 +32,7 @@ spec:
   type: image
   params:
     - name: url
-      value: gcr.io/nikhilbarthwal-knative/helloworld:tekton
+      value: gcr.io/knative/helloworld:tekton
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun
