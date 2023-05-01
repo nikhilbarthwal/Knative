@@ -20,7 +20,7 @@ spec:
   template:
     spec:
       containers:
-        - image: gcr.io/knative/grpc-greeter:v1
+        - image: gcr.io/{PROJECT_ID}/grpc-greeter:v1
           ports:
           - name: h2c
             containerPort: 8080

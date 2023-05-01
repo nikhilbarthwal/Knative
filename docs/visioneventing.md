@@ -34,9 +34,9 @@ Follow the instructions for your preferred language to create a service to handl
 Build and push the Docker image (replace `{username}` with your actual DockerHub):
 
 ```bash
-docker build -t {username}/vision:v1 .
+docker build -t gcr.io/{PROJECT_ID}/vision:v1 .
 
-docker push {username}/vision:v1
+docker push gcr.io/{PROJECT_ID}/vision:v1
 ```
 
 ## Create Vision Service

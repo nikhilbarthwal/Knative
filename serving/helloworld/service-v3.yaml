@@ -20,7 +20,7 @@ spec:
   template:
     spec:
       containers:
-        - image: gcr.io/knative/helloworld:v3
+        - image: gcr.io/{PROJECT_ID}/helloworld:v3
           env:
             - name: TARGET
               value: "v3"

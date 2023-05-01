@@ -19,4 +19,4 @@ spec:
   template:
     spec:
       containers:
-        - image: gcr.io/knative/event-display-with-reply:v1
+        - image: gcr.io/{PROJECT_ID}/event-display-with-reply:v1

@@ -32,7 +32,7 @@ spec:
   type: image
   params:
     - name: url
-      value: gcr.io/knative/helloworld:tekton
+      value: gcr.io/{PROJECT_ID}/helloworld:tekton
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun

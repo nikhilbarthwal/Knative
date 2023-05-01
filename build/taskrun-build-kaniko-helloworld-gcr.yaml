@@ -38,4 +38,4 @@ spec:
         type: image
         params:
         - name: url
-          value: gcr.io/knative/helloworld:kaniko-tekton
+          value: gcr.io/{PROJECT_ID}/helloworld:kaniko-tekton
