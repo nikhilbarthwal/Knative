@@ -1,3 +1,6 @@
+#Setup: [Doc Link](https://docs.google.com/document/d/1KE-u7i5VaraLwXmqoyVQg3IpYtEccqw0vd3qgZCMZYw/edit)
+
+
 # Knative Tutorial
 
 This tutorial shows how to use different parts of [Knative](https://www.knative.dev/docs/).
