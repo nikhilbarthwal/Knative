@@ -45,9 +45,9 @@ For event consumer, we'll use an Event Display service that simply logs out rece
 Build and push the Docker image (Replace `{project-id}` with your GCP project name):
 
 ```bash
-docker build -t gcr.io/{PROJECT_ID}/event-display:v1 .
+docker build -t gcr.io/knative-400704/event-display:v1 .
 
-docker push gcr.io/{PROJECT_ID}/event-display:v1
+docker push gcr.io/knative-400704/event-display:v1
 ```
 
 ### Knative Service

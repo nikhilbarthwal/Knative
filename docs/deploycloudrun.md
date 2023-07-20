@@ -41,13 +41,13 @@ Cloud Run currently deploys images from Google Container Registry (GCR) only. In
 First, set an environment variable for your project:
 
 ```bash
-export PROJECT_ID={PROJECT_ID}
+export PROJECT_ID=knative-400704
 ```
 
 In [helloworld](../serving/helloworld/) folder, go to the folder for the language of your choice ([csharp](../serving/helloworld/csharp/), [python](../serving/helloworld/python/)). Run the following command:
 
 ```bash
-gcloud builds submit --tag gcr.io/{PROJECT_ID}/helloworld:v1
+gcloud builds submit --tag gcr.io/knative-400704/helloworld:v1
 ```
 
 This builds and pushes the image to GCR using Cloud Build.
@@ -57,7 +57,7 @@ This builds and pushes the image to GCR using Cloud Build.
 Let's finally deploy our service to Cloud Run, it's a single gcloud command:
 
 ```bash
-gcloud run deploy --image gcr.io/{PROJECT_ID}/helloworld:v1
+gcloud run deploy --image gcr.io/knative-400704/helloworld:v1
 
 Please choose a target platform:
  [1] Cloud Run (fully managed)
@@ -69,7 +69,7 @@ Please enter your numeric choice:  1
 To specify the platform yourself, pass `--platform managed`. Or, to make this the default target platform, run `gcloud config set run/platform managed`.
 
 Service name (helloworld):
-Deploying container to Cloud Run service [helloworld] in project [{PROJECT_ID}] region [europe-west1]
+Deploying container to Cloud Run service [helloworld] in project [knative-400704] region [europe-west1]
  Deploying... Done.
    Creating Revision...
    Routing traffic...

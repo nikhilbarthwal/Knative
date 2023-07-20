@@ -37,7 +37,7 @@ grant rights to that Service Account to publish to Pub/Sub:
 ```sh
 export GCS_SERVICE_ACCOUNT=service-XYZ@gs-project-accounts.iam.gserviceaccount.com
 export PROJECT_ID=$(gcloud config get-value core/project)
-gcloud projects add-iam-policy-binding ${PROJECT_ID} \
+gcloud projects add-iam-policy-binding $knative-400704 \
   --member=serviceAccount:${GCS_SERVICE_ACCOUNT} \
   --role roles/pubsub.publisher
 ```

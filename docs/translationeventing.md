@@ -41,9 +41,9 @@ Follow the instructions for your preferred language to create a service to handl
 Build and push the Docker image (replace `{username}` with your actual DockerHub):
 
 ```bash
-docker build -t gcr.io/{PROJECT_ID}/translation:v1 .
+docker build -t gcr.io/knative-400704/translation:v1 .
 
-docker push gcr.io/{PROJECT_ID}/translation:v1
+docker push gcr.io/knative-400704/translation:v1
 ```
 
 ## Deploy the Translation service

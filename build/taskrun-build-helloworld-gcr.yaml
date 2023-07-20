@@ -31,8 +31,8 @@ spec:
   type: image
   params:
     - name: url
-      # Replace {PROJECT_ID} with your GCP Project's ID.
-      value: gcr.io/{PROJECT_ID}/helloworld:tekton
+      # Replace knative-400704 with your GCP Project's ID.
+      value: gcr.io/knative-400704/helloworld:tekton
 ---
 apiVersion: tekton.dev/v1beta1
 kind: TaskRun

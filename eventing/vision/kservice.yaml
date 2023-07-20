@@ -22,4 +22,4 @@ spec:
         autoscaling.knative.dev/minScale: "1"
     spec:
       containers:
-        - image: gcr.io/{PROJECT_ID}/vision:v1
+        - image: gcr.io/knative-400704/vision:v1

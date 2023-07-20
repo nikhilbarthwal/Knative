@@ -47,8 +47,8 @@ spec:
       name: buildpacks-cnb
       arguments:
       - name: IMAGE
-        # Replace {PROJECT_ID} with your GCP Project's ID.
-        value: gcr.io/{PROJECT_ID}/sample-java-app:buildpack
+        # Replace knative-400704 with your GCP Project's ID.
+        value: gcr.io/knative-400704/sample-java-app:buildpack
 ```
 
 One thing you'll notice is that the `sample-java-app` does not define a Dockerfile. Buildpacks will use its auto-detection to build the image and push it to the location specified in `IMAGE` argument.

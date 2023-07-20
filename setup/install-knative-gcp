@@ -20,7 +20,7 @@ kubectl apply \
 curl -s https://raw.githubusercontent.com/google/knative-gcp/master/hack/lib.sh --output lib.sh
 gcloud config set run/cluster ${CLUSTER_NAME}
 gcloud config set run/cluster_location ${CLUSTER_ZONE}
-gcloud config set project ${PROJECT_ID}
+gcloud config set project $knative-400704
 
 if [ "$1" == "workload" ]; then
   echo "TODO"

@@ -46,8 +46,8 @@ spec:
       name: kaniko
       arguments:
       - name: IMAGE
-        # Replace {PROJECT_ID} with your GCP Project's ID.
-        value: gcr.io/{PROJECT_ID}/helloworld:kaniko
+        # Replace knative-400704 with your GCP Project's ID.
+        value: gcr.io/knative-400704/helloworld:kaniko
 ```
 
 Notice how the Build is not creating its own steps anymore but instead refers to the Kaniko template. The Docker image location is passed in via `IMAGE` argument.

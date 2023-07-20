@@ -90,8 +90,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=filter
-docker build -t gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative-400704/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative-400704/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -129,8 +129,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=resizer
-docker build -t gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative-400704/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative-400704/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -169,8 +169,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=watermarker
-docker build -t gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative-400704/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative-400704/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in
@@ -208,8 +208,8 @@ and push the container image:
 
 ```bash
 export SERVICE_NAME=labeler
-docker build -t gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
-docker push gcr.io/{PROJECT_ID}/${SERVICE_NAME}:v1
+docker build -t gcr.io/knative-400704/${SERVICE_NAME}:v1 -f image/${SERVICE_NAME}/csharp/Dockerfile .
+docker push gcr.io/knative-400704/${SERVICE_NAME}:v1
 ```
 
 Create the service defined in

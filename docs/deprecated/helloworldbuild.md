@@ -30,8 +30,8 @@ spec:
     image: "gcr.io/kaniko-project/executor:v0.6.0"
     args:
     - "--dockerfile=/workspace/Dockerfile"
-    # Replace {PROJECT_ID} with your GCP Project's ID.
-    - "--destination=gcr.io/{PROJECT_ID}l/helloworld:build"
+    # Replace knative-400704 with your GCP Project's ID.
+    - "--destination=gcr.io/knative-400704l/helloworld:build"
 ```
 
 This uses Knative Build to download the source code in the 'workspace' directory and then use Kaniko to build and push an image to GCR.

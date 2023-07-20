@@ -27,5 +27,5 @@ spec:
     image: "gcr.io/kaniko-project/executor:v0.6.0"
     args:
     - "--dockerfile=/workspace/Dockerfile"
-    # Replace {PROJECT_ID} with your actual GCP container registry
-    - "--destination=gcr.io/{PROJECT_ID}/helloworld:build"
+    # Replace knative-400704 with your actual GCP container registry
+    - "--destination=gcr.io/knative-400704/helloworld:build"

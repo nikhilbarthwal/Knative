@@ -15,4 +15,3 @@ Docker push permission:
 https://cloud.google.com/container-registry/docs/advanced-authentication
 gcloud auth configure-docker
 
-

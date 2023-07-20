@@ -22,4 +22,4 @@ spec:
         autoscaling.knative.dev/minScale: "1"
     spec:
       containers:
-        - image: gcr.io/{PROJECT_ID}/event-display:v1
+        - image: gcr.io/knative-400704/event-display:v1
