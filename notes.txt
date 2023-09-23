@@ -1,0 +1,18 @@
+Install gcloud cli: https://cloud.google.com/sdk/docs/install#deb
+Login into account: gcloud auth login
+List Gcloud projects: gcloud projects list
+Set Project: gcloud config set project knative-388222
+
+Install docker: https://docs.docker.com/engine/install/debian/
+
+
+Install Kubectl: https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-access-for-kubectl
+Install Kubectl: sudo apt install kubectl
+Plugin:   sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+Check: gke-gcloud-auth-plugin --version
+Permission issues: Fix Docker
+Docker push permission:
+https://cloud.google.com/container-registry/docs/advanced-authentication
+gcloud auth configure-docker
+
+
